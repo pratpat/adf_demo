@@ -2,7 +2,7 @@
 	"name": "ArmtemplateTestDatasetIn",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "ArmtemplateStorageLinkedService",
+			"referenceName": "AzureBlobStorage1",
 			"type": "LinkedServiceReference"
 		},
 		"annotations": [],
@@ -10,7 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"fileName": "moviesDB2.csv",
+				"fileName": "moviesDB2_Out.csv",
 				"folderPath": "input",
 				"container": "datafactory"
 			}
