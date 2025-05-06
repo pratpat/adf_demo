@@ -1,62 +1,59 @@
 {
-	"name": "Pipeline1",
+	"name": "CopyPipeline_iyz",
 	"properties": {
 		"activities": [
 			{
-				"name": "Copy data1",
+				"name": "Copy_iyz",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
-					"timeout": "0.10:00:00",
+					"timeout": "0.12:00:00",
 					"retry": 0,
 					"retryIntervalInSeconds": 30,
 					"secureOutput": false,
 					"secureInput": false
 				},
-				"userProperties": [],
+				"userProperties": [
+					{
+						"name": "Source",
+						"value": "adfv2tutorial/input/moviesDB2.csv"
+					},
+					{
+						"name": "Destination",
+						"value": "adfv2tutorial/output/MoviesOut"
+					}
+				],
 				"typeProperties": {
 					"source": {
-						"type": "DelimitedTextSource",
+						"type": "BinarySource",
 						"storeSettings": {
 							"type": "AzureBlobStorageReadSettings",
 							"recursive": true,
-							"enablePartitionDiscovery": false
+							"deleteFilesAfterCompletion": false
 						},
 						"formatSettings": {
-							"type": "DelimitedTextReadSettings"
+							"type": "BinaryReadSettings"
 						}
 					},
 					"sink": {
-						"type": "DelimitedTextSink",
+						"type": "BinarySink",
 						"storeSettings": {
 							"type": "AzureBlobStorageWriteSettings",
 							"copyBehavior": "PreserveHierarchy"
-						},
-						"formatSettings": {
-							"type": "DelimitedTextWriteSettings",
-							"quoteAllText": true,
-							"fileExtension": ".txt"
 						}
 					},
 					"enableStaging": false,
-					"translator": {
-						"type": "TabularTranslator",
-						"typeConversion": true,
-						"typeConversionSettings": {
-							"allowDataTruncation": true,
-							"treatBooleanAsNumber": false
-						}
-					}
+					"validateDataConsistency": false
 				},
 				"inputs": [
 					{
-						"referenceName": "DelimitedText2",
+						"referenceName": "SourceDataset_iyz",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "DelimitedText1",
+						"referenceName": "DestinationDataset_iyz",
 						"type": "DatasetReference"
 					}
 				]
